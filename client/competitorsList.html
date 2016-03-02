@@ -1,0 +1,21 @@
+<template name="competitorsList">
+	<div>
+		<h2>Liste des comp&eacute;titeurs</h2>
+			<form>
+				Ajout d'un comp&eacute;titeur:
+                <label for="competitor_name">Nom</label>
+				<input type="text" id="competitor_name" name="competitor_name">
+                <label for="competitor_name">Ceinture</label>
+				<input type="text" id="competitor_grade" name="competitor_grade">
+                <input type="submit" value="Ok"> 
+			</form>
+			<ul>
+  				{{#each competitors}}
+	  				<li>
+	  					{{name}} : {{grade}}
+                        <button class="remove_competitors">&times;</button>
+	  				</li>
+  				{{/each}}
+  			</ul>
+  		</div>			
+</template>

@@ -1,0 +1,16 @@
+<template name="addFight">
+	<form>
+		Commencer combat:
+		<select name="fighter">
+			{{#each competitors}}
+				<option>{{name}}</option>
+			{{/each}}
+		</select>
+		<select name="tatami">
+			{{#each tatamis}}
+				<option>{{number}} : {{status}}</option>
+			{{/each}}
+		</select>
+		<input type="submit" value="Lancer">
+	</form>
+</template>
