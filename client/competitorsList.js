@@ -1,3 +1,5 @@
+Meteor.subscribe("competitorsList");
+
 Template.competitorsList.helpers({
 	"competitors": function () {
 		return Competitors.find();
@@ -7,13 +9,14 @@ Template.competitorsList.helpers({
 Template.competitorsList.events({
 	"submit form": function (e) {
 		e.preventDefault();
-		var c_n = e.target.competitor_name.value,
-			c_g = e.target.competitor_grade.value;
+		var c_n = $("#competitor_name").val(),
+			c_g = $("#competitor_grade").val(),
+			current_user = Meteor.userId();
 
-		Competitors.insert({name: c_n, grade: c_g});
+		Meteor.call("insertCompetitor", c_n, c_g, current_user);
 	},
 	"click .remove_competitors": function () {
 		var c_id = this._id;
-		Competitors.remove(c_id);
+		Meteor.call("removeCompetitor", c_id);
 	}
 });

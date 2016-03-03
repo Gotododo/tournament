@@ -1,6 +1,10 @@
+<body class="container"></body>
+
 <template name="main">
-	<header>
-	  <h1>Bienvenue au Tournoi de Judo !</h1>
+    <header>
+        <h1>
+            Bienvenue au Tournoi de Judo {{#if currentUser}} {{userEmail}} {{/if}}!
+        </h1>
 	</header>
 	{{> nav}}
 	{{> yield}}

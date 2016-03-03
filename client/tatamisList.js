@@ -1,22 +1,22 @@
+Meteor.subscribe("tatamisList");
+
 Template.tatamisList.helpers({
     "tatamis": function () {
-        return Tatamis.find({});
+        return Tatamis.find();
     }
 });
 
 Template.tatamisList.events({
     "submit form": function (e) {
         e.preventDefault();
-        var t_nb = e.target.tatami_number.value;
-        var t_st = e.target.tatami_status.value;
+    	var t_nb = $("#tatami_number").val(),
+			t_st = $("#tatami_status").val(),
+    		current_user = Meteor.userId();
 
-        Tatamis.insert({
-            number: t_nb,
-            status: t_st
-        });
+        Meteor.call("insertTatami", t_nb, t_st, current_user);
     },
     "click .remove_tatamis": function (e) {
         var t_id = this._id;
-        Tatamis.remove(t_id);
+        Meteor.call("removeTatami", t_id);
     }
 });
